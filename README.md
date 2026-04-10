@@ -28,8 +28,6 @@
 
 **Beneficio clave:** Si un servicio falla, el orquestador lo detecta y lo reinicia automáticamente. Es ideal para entornos que requieren alta disponibilidad.
 
-> **Ejemplo visual:** diagrama de arquitectura que muestre la comunicación entre servicios en una aplicación real con Aspire. Ruta sugerida: `./img/aspire_architecture.png`
-
 <img src="./img/aspire_architecture.png" alt="Arquitectura Aspire">
 
 ---
@@ -647,7 +645,7 @@ Aspire detecta automáticamente los puertos HTTP/HTTPS definidos en `launchSetti
 
 >  Diagrama de binding implícito
 
-<img src="./img/binding_implicito.png" alt="binding_implicito" width="500">
+<img src="./img/binding_implicito.png" alt="binding_implicito">
 
 ### Explicit Binding
 
@@ -676,7 +674,7 @@ Cuando se usa binding explícito, se recomienda eliminar la `applicationUrl` del
 
 > **[IMAGEN]**  — Diagrama de binding explícito
 
-<img src="./img/binding_explicito.png" alt="binding_explicito" width="500">
+<img src="./img/binding_explicito.png" alt="binding_explicito">
 ---
 
 ## 14. Parámetros y cadenas de conexión
@@ -709,7 +707,7 @@ var api = builder.AddProject<Projects.MasterNet_WebApi>("api")
 
 > **[IMAGEN]**  — Vista del dashboard mostrando variables de entorno
 >
-<img src="./img/variables.png" alt="variables" width="500">
+<img src="./img/variables.png" alt="variables>
 
 ### Cadenas de conexión
 
@@ -735,7 +733,7 @@ var api = builder.AddProject<Projects.MasterNet_WebApi>("api")
 
 > **[IMAGEN]** — Vista del dashboard mostrando cadenas de conexión
 >
-<img src="./img/conectionstring.png" alt="conectionstring" width="500">
+<img src="./img/conectionstring.png" alt="conectionstring">
 
 ---
 
@@ -861,12 +859,12 @@ builder.Services.AddHttpClient<IRatingServiceClient, RatingServiceHttpClient>(
 
 > **[IMAGEN]** — Dashboard mostrando el estado de Redis y el RatingService  
 
-<img src="./img/redis_1.png" alt="redis" width="500">
+<img src="./img/redis_1.png" alt="redis">
 
 
 > **[IMAGEN]**  — Diagrama de relaciones entre servicios configurado en Aspire  
 
-<img src="./img/diagram_1.png" alt="diagram" width="500">
+<img src="./img/diagram_1.png" alt="diagram">
 
 
 
@@ -887,7 +885,7 @@ Accept: application/json
 
 > **[IMAGEN]** — Comunicación WebAPI → RatingService → Redis
 
-<img src="./img/redis_2.png" alt="redis_2" width="500">
+<img src="./img/redis_2.png" alt="redis_2">
 
 ---
 
@@ -949,10 +947,10 @@ graph TD
 > ```
 
 > **[IMAGEN]**  — Vista de logs en el dashboard de Aspire  
-<img src="./img/telemetry_1.png" alt="telemetry_1" width="500">
+<img src="./img/telemetry_1.png" alt="telemetry_1" >
  
 > **[IMAGEN]**  — Filtrado de logs por atributos estructurados
-<img src="./img/telemetry_2.png" alt="telemetry_2" width="500">
+<img src="./img/telemetry_2.png" alt="telemetry_2" >
 
 ### 16.2. Métricas
 
@@ -992,7 +990,7 @@ Registrar la métrica en `MasterNet.ServiceDefaults/Extensions.cs`:
 
 > **[IMAGEN]**  — Panel de métricas en el dashboard de Aspire
 
-<img src="./img/metricas.png" alt="Arquitectura Aspire" width="500">
+<img src="./img/metricas.png" alt="Arquitectura Aspire">
 
 ### 16.3. Trazas y Spans
 
@@ -1038,13 +1036,13 @@ graph LR
 
 Osea lo unico que te muestra el trace es el recorrigo de todo tu proceso.
 > **[IMAGEN]**  — Vista general de trazas en el dashboard  
-<img src="./img/trace_1.png" width="450"/>
+<img src="./img/trace_1.png" />
 
 
 Cada linea de la imagens representan un **Span**
 
 > **[IMAGEN]**  — Detalle de spans dentro de una traza  
-<img src="./img/trace_2.png" width="450">
+<img src="./img/trace_2.png" >
 
 #### Crear un span personalizado
 
@@ -1083,7 +1081,7 @@ Registrar la fuente del span en `ServiceDefaults/Extensions.cs`:
 ```
 
 > **[IMAGEN]**  — Trazas de llamadas HTTP a servicios externos  
-<img src="./img/trace_3.png" width="450">
+<img src="./img/trace_3.png" >
 
 #### Agregar atributos y eventos a un span
 
@@ -1096,7 +1094,7 @@ Activity.Current?.SetTag("rating", request.Rating);
 Activity.Current?.AddEvent(new ActivityEvent("Evento post"));
 ```
 > **[IMAGEN]**  — Span personalizado visible en el dashboard
-<img src="./img/trace_4.png" width="450">
+<img src="./img/trace_4.png" >
 
 #### Habilitar trazas de SQL (Entity Framework)
 
