@@ -52,3 +52,9 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Docker / Dev Containers
+.devcontainer/
+.docker/
+# Archivos de estado de contenedores que genera Aspire/Docker
+.env
