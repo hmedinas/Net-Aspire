@@ -1,0 +1,148 @@
+@MasterNet.WebApi_HostAddress = http://localhost:5001
+
+############################################
+# AccountController
+############################################
+
+# @name register
+POST {{MasterNet.WebApi_HostAddress}}/api/account/register
+Content-Type: application/x-www-form-urlencoded
+Accept: application/json
+
+userName=user{{$randomInt}}&email=user{{$randomInt}}@mail.com&fullName=User%20{{$randomInt}}&password=P@ssw0rd{{$randomInt}}!
+
+###
+
+# @name Login
+POST {{MasterNet.WebApi_HostAddress}}/api/account/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "vaxi.drez@gmail.com",
+  "password": "Password123$"
+}
+
+###
+
+@bearerToken = {{Login.response.body.$.token}}
+
+###
+
+# Me (token required)
+GET {{MasterNet.WebApi_HostAddress}}/api/account/me
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+###
+
+############################################
+# CoursesController
+############################################
+
+# List/Pagination (AllowAnonymous)
+GET {{MasterNet.WebApi_HostAddress}}/api/courses
+Accept: application/json
+
+###
+
+# List with filters
+GET {{MasterNet.WebApi_HostAddress}}/api/courses?title=aspnet&description=core&pageNumber=1&pageSize=10&orderBy=Title&orderAsc=true
+Accept: application/json
+
+###
+
+# Second page
+GET {{MasterNet.WebApi_HostAddress}}/api/courses?pageNumber=2&pageSize=5
+Accept: application/json
+
+###
+
+# Create Course (FromForm x-www-form-urlencoded) - requires Policy COURSE_WRITE
+POST {{MasterNet.WebApi_HostAddress}}/api/courses
+Content-Type: application/x-www-form-urlencoded
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+title=Course%20{{$randomInt}}&description=Test%20description
+
+###
+
+# Define a course ID to test GET/PUT/DELETE
+@courseId = 10296449-09a9-4f9e-9f51-fff7606db58b
+
+# GET by Id (AllowAnonymous)
+GET {{MasterNet.WebApi_HostAddress}}/api/courses/{{courseId}}
+Accept: application/json
+
+###
+
+# CSV report (AllowAnonymous)
+GET {{MasterNet.WebApi_HostAddress}}/api/courses/report
+Accept: text/csv
+
+###
+
+# Update Course (JSON) - requires Policy COURSE_UPDATE
+PUT {{MasterNet.WebApi_HostAddress}}/api/courses/{{courseId}}
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+  "title": "Updated title",
+  "description": "Updated description",
+  "publishedAt": "2025-09-16T00:00:00Z"
+}
+
+###
+
+# Delete Course - requires Policy COURSE_DELETE
+DELETE {{MasterNet.WebApi_HostAddress}}/api/courses/{{courseId}}
+Accept: application/json
+Authorization: Bearer {{bearerToken}}
+
+###
+
+############################################
+# DeviceController
+############################################
+
+# Search devices by name (AllowAnonymous)
+GET {{MasterNet.WebApi_HostAddress}}/api/devices?request=iphone
+Accept: application/json
+
+###
+
+############################################
+# InstructorsController
+############################################
+
+# Instructors list/pagination (AllowAnonymous)
+GET {{MasterNet.WebApi_HostAddress}}/api/instructors?pageNumber=1&pageSize=10
+Accept: application/json
+
+###
+
+# Create instructor (JSON)
+POST {{MasterNet.WebApi_HostAddress}}/api/instructors
+Content-Type: application/json
+Accept: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe{{$randomInt}}@mail.com"
+}
+
+###
+POST {{MasterNet.WebApi_HostAddress}}/api/ratings
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": "c2222222-2222-2222-2222-222222222222",
+  "rating":3
+}
+
+
